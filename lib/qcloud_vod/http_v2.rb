@@ -11,7 +11,7 @@ module QcloudVod
       params["Action"] = action
       params["Region"] = region
       params["Timestamp"] = Time.now.to_i
-      params["Nonce"] = SecureRandom.rand(10**10)
+      params["Nonce"] = rand(10**10)
       params["SecretId"] = access_id
       params["SignatureMethod"] = "HmacSHA1"
       query_string = params.sort_by { |k, _| k }.map { |k, v| "#{k}=#{v}" }.join("&")

@@ -2,7 +2,6 @@ require 'digest'
 require 'openssl'
 require 'net/http'
 require 'cgi'
-require 'securerandom'
 require "base64"
 module QcloudVod
   class Http
@@ -18,7 +17,7 @@ module QcloudVod
       params["Action"] = action
       params["Region"] ||= region
       params["Timestamp"] = Time.now.to_i
-      params["Nonce"] = SecureRandom.rand(10**10)
+      params["Nonce"] = rand(10**10)
       params["Version"] = version
       params["SecretId"] = access_id
       params["SignatureMethod"] = "HmacSHA1"
