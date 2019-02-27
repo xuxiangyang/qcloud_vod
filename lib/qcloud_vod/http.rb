@@ -22,7 +22,7 @@ module QcloudVod
       params["SecretId"] = access_id
       params["SignatureMethod"] = "HmacSHA1"
 
-      query_string = params.sort_by { |k, _| k }.map { |k, v| "#{k}=#{v}" }.join("&")
+      query_string = params.sort_by { |k, _| k.to_s }.map { |k, v| "#{k}=#{v}" }.join("&")
       sign_string = "GET#{host}/?#{query_string}"
       params["Signature"] = Base64.strict_encode64(OpenSSL::HMAC.digest("SHA1", access_key, sign_string))
       query_string = params.sort_by { |k, _| k }.map { |k, v| "#{k}=#{CGI.escape(v.to_s)}" }.join("&")
