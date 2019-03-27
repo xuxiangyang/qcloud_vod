@@ -38,5 +38,9 @@ module QcloudVod
       params["fileId"] = file_id
       http_v2.get("GetVideoInfo", params)
     end
+
+    def sample_snapshots(file_id, template_id)
+      http_v2.get("ProcessFile", "fileId" => file_id, "sampleSnapshot.definition" => template_id)
+    end
   end
 end
